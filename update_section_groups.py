@@ -1,4 +1,4 @@
-# pass CANVAS_COURSE_ID, CANVAS_GROUPSET_ID as environment variables
+# pass CANVAS_COURSE_ID, CANVAS_GROUPSET_NAME as environment variables
 
 if __name__ == "__main__":
     from dotenv import load_dotenv
