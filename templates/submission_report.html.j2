@@ -1,0 +1,24 @@
+{% now 'America/Chicago', '%d %b %Y %H:%M' %}<br />
+<table>
+<tr style="border-bottom: 1px solid #000;">
+<th style="background: gainsboro;padding-right: 20px;padding-left: 10px;">Section</th>
+{% for id in targetAssignmentIDs %}
+<th style="background: gainsboro;">
+{{ id['name'] }}
+</th>
+{% endfor %}
+</tr>
+{% for section in submission_report.keys() %}
+<tr style="border-bottom: 1px solid #000;">
+<td style="background: #8ad4eb;padding-right: 20px;padding-left: 10px;">{{ section }}</td>
+{% for id in targetAssignmentIDs %}
+{% set numEntered = submission_report[section][(id['id'])]['numEntered'] %}
+{% set numStudents = submission_report[section][(id['id'])]['numStudents'] %}
+{% if numEntered < numStudents %}{% set bgcolor = '#f2c80f' %}{% else %}{% set bgcolor = '#61b546' %}{% endif %}
+<td style="background: {{ bgcolor }};">
+{{ numEntered }}/{{ numStudents }}
+</td>
+{% endfor %}
+</tr>
+{% endfor %}
+</table>
