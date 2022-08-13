@@ -41,7 +41,7 @@ if __name__ == "__main__":
         groupset_id = groupset.id
     
     if groupset_id == None:
-        logging.error(f"groupset name not found in course.")
+        logging.error(f"Groupset name not found in course.")
         exit(1)
 
     groupset = canvas.get_group_category(groupset_id)
