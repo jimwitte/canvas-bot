@@ -1,2 +1,3 @@
-canvasapi==2.2.0
-python-dotenv==0.20.0
+canvasapi
+python-dotenv
+jinja2-time
