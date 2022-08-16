@@ -5,6 +5,26 @@ cd $(dirname "${BASH_SOURCE[0]}")
 
 # development sandbox course
 export CANVAS_COURSE_ID=793
-export CANVAS_GROUPSET_NAME="test section groupset"
 python3 user_set_section_only.py
 python3 update_section_groups.py
+
+# LAS 100 FALL 2022
+export CANVAS_COURSE_ID=22556
+export CANVAS_GROUPSET_NAME='Section Groups'
+python3 user_set_section_only.py
+python3 update_section_groups.py
+
+# LAS 101 FALL 2022
+export CANVAS_COURSE_ID=22598
+export CANVAS_GROUPSET_NAME='Section Groups'
+python3 user_set_section_only.py
+python3 update_section_groups.py
+
+
+# LAS 399 FALL 2022
+export CANVAS_COURSE_ID=22602
+export CANVAS_GROUPSET_NAME='Section Groups'
+python3 user_set_section_only.py
+python3 update_section_groups.py
+
+
