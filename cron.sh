@@ -27,4 +27,14 @@ export CANVAS_GROUPSET_NAME='Section Groups'
 python3 user_set_section_only.py
 python3 update_section_groups.py
 
+# LAS 102 FALL 2022
+export CANVAS_COURSE_ID=22599
+export CANVAS_GROUPSET_NAME='Section Groups'
+python3 user_set_section_only.py
+python3 update_section_groups.py
 
+# LAS 122 FALL 2022
+export CANVAS_COURSE_ID=21009
+export CANVAS_GROUPSET_NAME='Section Groups'
+python3 user_set_section_only.py
+python3 update_section_groups.py
