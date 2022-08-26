@@ -36,7 +36,7 @@ if __name__ == "__main__":
         CANVAS_PUBLISH_COURSE_ID = CANVAS_COURSE_ID
 
     # include assignments with names that start with these strings
-    includeAssignmentPatterns = ['Att','att']
+    includeAssignmentPatterns = ['Att','att','Week','week']
 
     canvas = Canvas(API_URL, API_KEY)
     course = canvas.get_course(CANVAS_COURSE_ID)
