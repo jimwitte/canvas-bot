@@ -54,13 +54,15 @@ if __name__ == "__main__":
         memberships = group.get_memberships()
         time.sleep(.25)
         group_members = set([int(member.user_id) for member in memberships])
-        sectionid = int(group.description)  #sectionid stored in group description field
-        section = course.get_section(sectionid)
-        enrollments = section.get_enrollments()
-        section_members = set([int(enrollment.user_id) for enrollment in enrollments
-                               if enrollment.type == 'StudentEnrollment' and enrollment.enrollment_state == 'active'])
-        for user_id in (section_members - group_members):
-            user = course.get_user(user_id)
-            logging.warning(f'added {user} to group: {group.name}')
-            group.create_membership(user_id)
-            time.sleep(.25)
+        group_description = group.description
+        if group_description != None:
+            sectionid = int(group.description)  #sectionid stored in group description field
+            section = course.get_section(sectionid)
+            enrollments = section.get_enrollments()
+            section_members = set([int(enrollment.user_id) for enrollment in enrollments
+                                if enrollment.type == 'StudentEnrollment' and enrollment.enrollment_state == 'active'])
+            for user_id in (section_members - group_members):
+                user = course.get_user(user_id)
+                logging.warning(f'added {user} to group: {group.name}')
+                group.create_membership(user_id)
+                time.sleep(.25)
