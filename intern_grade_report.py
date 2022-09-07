@@ -86,7 +86,7 @@ if __name__ == "__main__":
             id = submissionAssignment['id']
             if submission.user['name'] != 'Test Student':
                 dashboardData[section.name][id]['numStudents'] += 1
-            if submission.entered_grade != None and submission.user['name'] != 'Test Student':
+            if (submission.entered_grade != None or submission.excused == True) and submission.user['name'] != 'Test Student':
                 dashboardData[section.name][id]['numEntered'] += 1
     
     template = jinjaEnv.get_template('submission_report.html.j2')
