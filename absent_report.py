@@ -90,7 +90,7 @@ summaryData = {}
 sections = course.get_sections()
 for section in sections:
     if "Test Section" not in section.name:
-        # logging.warning(f"Getting submissions for section {section.name}")
+        logging.warning(f"Getting absences & excused for section {section.name}")
         submissions = section.get_multiple_submissions(
             student_ids='all',
             assignment_ids=[i.id for i in includedAssignments],
