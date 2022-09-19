@@ -1,0 +1,61 @@
+{% now 'America/Chicago', '%d %b %Y %H:%M' %}<br />
+
+<h2>LAS 101 Absent Summary</h2>
+Only attendance assignments with entered grades are included. Test Section is excluded.<br />
+"Submitted" is the count of scores that are not "missing" (blank).<br />
+
+<table>
+<tr style="border-bottom: 1px solid #000;">
+<th style="background: gainsboro;padding-center: 20px;padding-left: 10px;"></th>
+{% for assignmentID in summary_report.keys() %}
+<th style="background: gainsboro;padding-right: 5px;padding-left: 5px;">{{ summary_report[assignmentID]['name'][0:6] }}...</th>
+{% endfor %}
+</tr>
+
+<tr style="border-bottom: 1px solid #000;">
+<td style="background: gainsboro;padding-center: 20px;padding-left: 10px;">Absent</td>
+{% for assignmentID in summary_report.keys() %}
+<td align="center">{{summary_report[assignmentID]['numAbsent']}}</td>
+{% endfor %}
+</tr>
+
+<tr style="border-bottom: 1px solid #000;">
+<td style="background: gainsboro;padding-center: 20px;padding-left: 10px;">Excused</td>
+{% for assignmentID in summary_report.keys() %}
+<td align="center">{{summary_report[assignmentID]['numExcused']}}</td>
+{% endfor %}
+</tr>
+
+<tr style="border-bottom: 1px solid #000;">
+<td style="background: gainsboro;padding-center: 20px;padding-left: 10px;">Submitted</td>
+{% for assignmentID in summary_report.keys() %}
+<td align="center">{{summary_report[assignmentID]['numSubmitted']}}</td>
+{% endfor %}
+</tr>
+</table>
+
+<p>&nbsp;</p>
+
+
+<h2>LAS 101 Students Marked Absent or Excused</h2>
+Students with most absent scores at top.<br />
+<table>
+
+<tr style="border-bottom: 1px solid #000;">
+<th style="background: gainsboro;padding-right: 20px;padding-left: 10px;">Name</th>
+<th style="background: gainsboro;padding-right: 5px;">Login</th>
+<th style="background: gainsboro;padding-right: 5px;">Section</th>
+<th style="background: gainsboro;padding-right: 5px;">Absences</th>
+<th style="background: gainsboro;padding-right: 5px;">Excused</th>
+</tr>
+
+{% for student in absent_report %}
+<tr style="border-bottom: 1px solid #000;">
+<td style="background: gainsboro;">{{student['name']}}&nbsp;</td>
+<td>{{student['login']}}&nbsp;</td>
+<td>{{ student['section'] }}</td>
+<td align='center'>{{ student['absences'] | length}}</td>
+<td align='center'>{{ student['excused'] | length }}</td>
+</tr>
+{% endfor %}
+</table>
