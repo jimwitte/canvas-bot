@@ -31,6 +31,8 @@ export CANVAS_COURSE_ID=37182
 export CANVAS_GROUPSET_NAME='Section Groups'
 python3 user_set_section_only.py
 python3 update_section_groups.py
+export CANVAS_PUBLISH_COURSE_ID=37185
+python3 intern_grade_report.py
 
 # LAS 122 FALL 2023
 export CANVAS_COURSE_ID=36270

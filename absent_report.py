@@ -123,7 +123,7 @@ reportList.sort(reverse=True,key=studentSort)
 template = jinjaEnv.get_template('absent_report.html.j2')
 pageContent = template.render(absent_report=reportList,summary_report=summaryData)
 
-publishPageTitle = 'Absent & Excused Report'
+publishPageTitle = f'{course.course_code} Absent & Excused Report'
 publishCourse = canvas.get_course(CANVAS_PUBLISH_COURSE_ID)
 publishCoursePages = publishCourse.get_pages(search_term=publishPageTitle)
 

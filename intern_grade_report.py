@@ -92,7 +92,7 @@ if __name__ == "__main__":
     template = jinjaEnv.get_template('submission_report.html.j2')
     pageContent = template.render(submission_report=dashboardData,targetAssignmentIDs=includedAssignments)
 
-    publishPageTitle = 'Attendance Submission Dashboard'
+    publishPageTitle = f'{course.course_code} Attendance Submission Dashboard'
     publishCourse = canvas.get_course(CANVAS_PUBLISH_COURSE_ID)
     publishCoursePages = publishCourse.get_pages(search_term=publishPageTitle)
 
