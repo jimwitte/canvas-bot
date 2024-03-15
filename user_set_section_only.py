@@ -13,7 +13,6 @@ if __name__ == "__main__":
     load_dotenv()
     API_URL = os.environ.get('API_URL', None)
     API_KEY = os.environ.get('API_KEY', None)
-   
 
     # set environment before run
     CANVAS_COURSE_ID = os.environ.get('CANVAS_COURSE_ID', None)
@@ -26,11 +25,13 @@ if __name__ == "__main__":
     canvas = Canvas(API_URL, API_KEY)
     course = canvas.get_course(CANVAS_COURSE_ID)
 
+    sanitized_course_code = course.course_code.replace("/", "_")
+
     logging.basicConfig(
         format='%(asctime)s [%(levelname)s] %(message)s',
         level=logging.WARNING,
         handlers=[
-            logging.FileHandler(f"{course.course_code}.log"),
+            logging.FileHandler(f"{sanitized_course_code}.log"),
             logging.StreamHandler(sys.stdout)
         ]
     )

@@ -24,22 +24,24 @@ if __name__ == "__main__":
     canvas = Canvas(API_URL, API_KEY)
     course = canvas.get_course(CANVAS_COURSE_ID)
 
+    sanitized_course_code = course.course_code.replace("/", "_")
+
     logging.basicConfig(
-        format='%(asctime)s [%(levelname)s] %(message)s',
+        format="%(asctime)s [%(levelname)s] %(message)s",
         level=logging.WARNING,
         handlers=[
-            logging.FileHandler(f"{course.course_code}.log"),
-            logging.StreamHandler(sys.stdout)
-        ]
+            logging.FileHandler(f"{sanitized_course_code}.log"),
+            logging.StreamHandler(sys.stdout),
+        ],
     )
 
     groupset_id = None
 
     group_categories = course.get_group_categories()
     for groupset in group_categories:
-      if groupset.name == CANVAS_GROUPSET_NAME:
-        groupset_id = groupset.id
-    
+        if groupset.name == CANVAS_GROUPSET_NAME:
+            groupset_id = groupset.id
+
     if groupset_id == None:
         logging.error(f"Groupset name not found in course.")
         exit(1)
@@ -47,7 +49,7 @@ if __name__ == "__main__":
     groupset = canvas.get_group_category(groupset_id)
 
     logging.warning(f"Checking/changing section groupset: {groupset} course: {course.course_code}")
-    
+
     groups = groupset.get_groups()
 
     for group in groups:
