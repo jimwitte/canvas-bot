@@ -35,15 +35,22 @@ if __name__ == "__main__":
         ],
     )
 
-    groupset_id = None
+groupset_id = None
 
-    group_categories = course.get_group_categories()
-    for groupset in group_categories:
-        if groupset.name == CANVAS_GROUPSET_NAME:
-            groupset_id = groupset.id
+group_categories = course.get_group_categories()
+for groupset in group_categories:
+    if groupset.name == CANVAS_GROUPSET_NAME:
+        groupset_id = groupset.id
+        break
 
-    if groupset_id == None:
-        logging.error(f"Groupset name not found in course.")
+if groupset_id is None:
+    # Assuming course.create_groupset(name) creates a new groupset and returns its ID
+    new_groupset = course.create_group_category(CANVAS_GROUPSET_NAME)
+    groupset_id = new_groupset.id
+    if groupset_id:
+        logging.info(f"Created new groupset with name: {CANVAS_GROUPSET_NAME}.")
+    else:
+        logging.error(f"Failed to create groupset with name: {CANVAS_GROUPSET_NAME}.")
         exit(1)
 
     groupset = canvas.get_group_category(groupset_id)
@@ -52,7 +59,18 @@ if __name__ == "__main__":
 
     groups = groupset.get_groups()
 
+    if not groups:
+        # create groups if needed
+        sections = course.get_sections()
+        for section in sections:
+            sectionid = section.id
+            group_name = section.name
+            group = groupset.create_group(name=group_name, description=section.id)
+
+    groups = groupset.get_groups()
+
     for group in groups:
+        # update group membership
         memberships = group.get_memberships()
         time.sleep(.25)
         group_members = set([int(member.user_id) for member in memberships])
