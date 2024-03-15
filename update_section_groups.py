@@ -14,7 +14,7 @@ if __name__ == "__main__":
     API_URL = os.environ.get('API_URL', None)
     API_KEY = os.environ.get('API_KEY', None)
 
-    CANVAS_COURSE_ID = os.environ.get("CANVAS_COURSE_ID", 45749)
+    CANVAS_COURSE_ID = os.environ.get("CANVAS_COURSE_ID", None)
     CANVAS_GROUPSET_NAME = os.environ.get('CANVAS_GROUPSET_NAME', 'Section Groups')
 
     if not all([API_URL, API_KEY, CANVAS_COURSE_ID, CANVAS_GROUPSET_NAME]):
