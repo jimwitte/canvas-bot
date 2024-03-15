@@ -49,7 +49,7 @@ if __name__ == "__main__":
         # create new groupset
         new_groupset = course.create_group_category(CANVAS_GROUPSET_NAME)
         groupset_id = new_groupset.id
-        
+
         if groupset_id:
             logging.info(f"Created new groupset with name: {CANVAS_GROUPSET_NAME}.")
         else:
@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
     logging.warning(f"Checking/changing section groupset: {groupset} course: {course.course_code}")
 
-    groups = groupset.get_groups()
+    groups = list(groupset.get_groups())
 
     if not groups:
         # create groups if needed
