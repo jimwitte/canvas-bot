@@ -67,7 +67,7 @@ if __name__ == "__main__":
         sections = course.get_sections()
         for section in sections:
             sectionid = section.id
-            group_name = section.name
+            group_name = f"Group {section.name}"
             group = groupset.create_group(name=group_name, description=section.id)
 
     groups = groupset.get_groups()
