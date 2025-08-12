@@ -35,6 +35,12 @@ if __name__ == "__main__":
         ],
     )
 
+    me = canvas.get_user('self')
+    pending = me.get_enrollments(state=['invited'])
+    for invite in pending:
+        logging.warning(f"Found pending invite for service account: {invite.user_id}")
+        invite.accept()
+
     logging.info(f"starting update section groups...")
 
     groupset_id = None
@@ -84,7 +90,8 @@ if __name__ == "__main__":
             enrollments = section.get_enrollments()
             section_members = set([int(enrollment.user_id) for enrollment in enrollments
                                 if enrollment.type == 'StudentEnrollment' and enrollment.enrollment_state == 'active'])
-            for user_id in (section_members - group_members):
+            new_members = (section_members - group_members)
+            for user_id in new_members:
                 user = course.get_user(user_id)
                 logging.warning(f'added {user} to group: {group.name}')
                 group.create_membership(user_id)
