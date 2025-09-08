@@ -1,11 +1,13 @@
 Canvas Bot
 ==========
 
-git clone git@github.com:jimwitte/canvas-bot.git
+Install
+--------
+`git clone git@github.com:jimwitte/canvas-bot.git`
 
 Cron Task
 ----------
-@hourly /home/ubuntu/canvas-bot/cron.sh >> /dev/null 2>&1
+`@hourly /home/ubuntu/canvas-bot/cron.sh >> /dev/null 2>&1`
 
 cron.sh Environment Variables
 ---------------------
